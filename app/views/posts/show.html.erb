@@ -12,4 +12,13 @@
   <p>
     <%= @post.body %>
   </p>
+
+  <div id="comments">
+    <h2><%= @post.comments.count %> Comments</h2>
+    <!-- Render the partial for listing the comments -->
+    <%= render @post.comments %>
+    <!-- Grab the form partial -->
+    <h3>Add a Comment</h3>
+    <%= render "comments/form" %>
+  </div>
 </div>
