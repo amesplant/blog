@@ -4,10 +4,23 @@
   </h1>
 
   <p>
-    Submitted <%= time_ago_in_words(@post.created_at) %> Ago
+    Submitted <%= time_ago_in_words(@post.created_at) %> ago
+    <% if signed_in? %>
+      | <%= link_to "Edit", edit_post_path(@post) %>
+      | <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
   </p>
 
   <p>
     <%= @post.body %>
   </p>
+
+  <div id="comments">
+    <h2><%= @post.comments.count %> Comments</h2>
+    <!-- Render the partial for listing the comments -->
+    <%= render @post.comments %>
+    <!-- Grab the form partial -->
+    <h3>Add a Comment</h3>
+    <%= render "comments/form" %>
+  </div>
 </div>
